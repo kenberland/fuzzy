@@ -7,25 +7,21 @@ var data = [
         artistName: 'Justin Bieber',
         collectionName: 'One Time (My Heart Edition) - Single',
         trackName: 'One Time (My Heart Edition)',
-        trackTimeMillis: 191697,
     },
     {
         artistName: 'Justin Bieber',
         collectionName: 'My Worlds Acoustic',
         trackName: 'One Time',
-        trackTimeMillis: 186267,
     },
     {
         artistName: 'Justin Bieber',
         collectionName: 'Radio Disney Jams 12',
         trackName: 'One Time (My Heart Edition)',
-        trackTimeMillis: 190667,
     },
     {
         artistName: 'The Justin Bieber Tribute Band',
         collectionName: 'One Time - Single',
         trackName: 'One Time',
-        trackTimeMillis: 240148,
     }
 ]
 
@@ -33,15 +29,19 @@ app.get('/', function(request, response) {
     var sortzzy = require('sortzzy')
     // Create the model to match against
     var model = {
-        artistName      : request.query.name,
-        trackName       : request.query.track,
-        trackTimeMillis : request.query.time
+        collectionName: request.query.c
     }
+/*    if (request.query.name)
+        model.artistName = request.query.name;
+    if (request.query.track)
+        model.trackName = request.query.track;
+    if (request.query.collection)
+        model.collectionName = request.query.collection; */
     // Define the fields
     var fields = [
-        {name:'artistName', type:'string', weight:1, options:{ignoreCase:true}},
-        {name:'trackName', type:'string', weight:1, options:{ignoreCase:true}},
-        {name:'trackTimeMillis', type:'numeric', weight:2, fixedRange:[160000, 220000]}
+//        {name:'artistName', type:'string', weight:1, options:{ignoreCase:true}},
+//        {name:'trackName', type:'string', weight:1, options:{ignoreCase:true}},
+        {name:'collectionName', type:'string', weight:10, options:{ignoreCase:true}},
     ]
     var result = sortzzy.sort(data, model, fields);
     response.send(result);
