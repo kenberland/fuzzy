@@ -33,9 +33,9 @@ app.get('/', function(request, response) {
     var sortzzy = require('sortzzy')
     // Create the model to match against
     var model = {
-        artistName      : 'justin bieber',
-        trackName       : 'One Time',
-        trackTimeMillis : 190000
+        artistName      : req.query.name,
+        trackName       : req.query.track,
+        trackTimeMillis : req.query.time
     }
     // Define the fields
     var fields = [
